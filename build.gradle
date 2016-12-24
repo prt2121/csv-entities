@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    // compile 'commons-beanutils:commons-beanutils:1.7.0'
+    compile 'org.mini2Dx:android-beans:1.0.0'
+    compile 'org.slf4j:slf4j-android:1.7.22'
+
+    testCompile 'junit:junit:4.4'
+    testCompile 'org.mockito:mockito-core:1.8.0'
+}

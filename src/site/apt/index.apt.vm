@@ -1,0 +1,29 @@
+onebusaway-csv-entities
+
+  The <<<onebusaway-csv-entities>>> module provides a library for reading and writing Java objects from CSV files
+
+  <<Current Version:>> ${currentVersion}
+
+  Details on all releases can be found in the {{{./release-notes.html}Release Notes}}.
+
+Documentation
+
+  You can access the {{{./apidocs/index.html}latest Javadoc for the library}}.
+
+Using in Maven
+
+  The <<<onebusaway-csv-entities>>> library is available as a Maven module.  Simply add the following dependency:
+
++---+
+<dependencies>
+    <dependency>
+        <groupId>org.onebusaway</groupId>
+        <artifactId>onebusaway-csv-entities</artifactId>
+        <version>${currentVersion}</version>
+    </dependency>
+</dependencies>
++---+
+
+#if( $currentVersion.contains('SNAPSHOT') )
+  To use a SNAPSHOT version of the library, you'll need to {{{https://code.google.com/p/onebusaway/wiki/MavenRepository}add a reference to the OneBusAway Maven repository}}.
+#end
