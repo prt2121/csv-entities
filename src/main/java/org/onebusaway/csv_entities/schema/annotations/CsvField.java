@@ -38,7 +38,7 @@ import org.onebusaway.csv_entities.schema.FieldMappingFactory;
  * </pre>
  * 
  * See the various fields defined below for more details on how you can control
- * the CSV <=> Java field mapping process.
+ * the CSV to Java field mapping process.
  * 
  * @author bdferris
  * @see CsvFields

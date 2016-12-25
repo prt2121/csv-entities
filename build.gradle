@@ -2,14 +2,10 @@ plugins {
     id "com.jfrog.bintray" version "1.7.3"
 }
 
-allprojects {
-	repositories {
-		jcenter()
-	}
-	apply plugin: 'maven'
-	apply plugin: 'maven-publish'
-	apply plugin: 'java'
-}
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'java'
+apply plugin: 'jacoco'
 
 repositories {
     jcenter()
@@ -23,6 +19,9 @@ publishing {
             groupId 'com.github.prt2121'
             artifactId 'csv-entities'
             version '1.1'
+
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
 }
@@ -66,3 +65,11 @@ dependencies {
     testCompile 'junit:junit:4.4'
     testCompile 'org.mockito:mockito-core:1.8.0'
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport
