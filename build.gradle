@@ -1,13 +1,68 @@
-apply plugin: 'java'
+plugins {
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
+group = 'com.github.prt2121'
+version = '1.0'
+
+allprojects {
+	repositories {
+		jcenter()
+	}
+	apply plugin: 'maven'
+	apply plugin: 'maven-publish'
+	apply plugin: 'java'
+}
 
 repositories {
     jcenter()
     mavenCentral()
 }
 
-// In this section you declare the dependencies for your production and test code
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'com.github.prt2121'
+            artifactId 'csv-entities'
+            version '1.0'
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['MyPublication']
+    pkg {
+        repo = 'maven'
+        name = 'csv-entities'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/prt2121/csv-entities.git'
+        version {
+            name = '1.0'
+            desc = 'csv entities 1.0 final'
+            released  = new Date()
+            vcsTag = '1.0'
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar, javadocJar
+}
+
 dependencies {
-    // compile 'commons-beanutils:commons-beanutils:1.7.0'
     compile 'org.mini2Dx:android-beans:1.0.0'
     compile 'org.slf4j:slf4j-android:1.7.22'
 
